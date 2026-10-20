@@ -22,14 +22,11 @@ jobs:
         with:
           java-version: '17'
           distribution: 'temurin'
-
-      - name: Setup Android SDK
-        uses: android-actions/setup-android@v3
+          cache: gradle
 
       - name: Build Lab 1 (Hello Compose)
         working-directory: lab1-hello-compose
         run: |
-          gradle wrapper --gradle-version 8.7
           chmod +x gradlew
           ./gradlew assembleDebug --no-daemon --stacktrace
           mkdir -p ../dist
@@ -38,7 +35,6 @@ jobs:
       - name: Build Lab 3 (Profile Compose)
         working-directory: lab3-profile-compose
         run: |
-          gradle wrapper --gradle-version 8.7
           chmod +x gradlew
           ./gradlew assembleDebug --no-daemon --stacktrace
           mkdir -p ../dist
